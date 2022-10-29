@@ -1,0 +1,18 @@
+from numba import jit
+import random
+random.seed()
+def monte_carlo_2D(nsamples):
+    acc = 0
+    for i in range (nsamples**2):
+        x = random.uniform(-1, 1)
+        y = random.uniform(-1, 1)
+        origin_dist = x**2 + y**2
+        if origin_dist <= 1:
+            acc += 1
+        nsamples += 1
+    return 4*acc/nsamples
+
+monte_carlo_2D_jit = jit()(monte_carlo_2D)
+
+
+%time monte_carlo_2D_jit(1000)
