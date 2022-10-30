@@ -16,5 +16,30 @@ def monte_carlo_3D(nsamples):
 
 monte_carlo_3D_jit = jit()(monte_carlo_3D)
 
-
 %time monte_carlo_3D_jit(1000)
+
+#Plot of convergence
+
+import random
+import matplotlib.pyplot as plt
+
+circlePoints = 0
+outsidePoints = 0
+pi = []
+
+runs = int(input('Number of runs to perform: '))
+for i in range(runs**3):
+    x = random.uniform(-1, 1)
+    y = random.uniform(-1, 1)
+    z = random.uniform(-1, 1)
+    if (x ** 2 + y ** 2 + z **2)  <= 1:
+        circlePoints += 1
+    else:
+        outsidePoints += 1
+    pi.append((6 * circlePoints) / (circlePoints + outsidePoints))
+plt.plot(pi)
+plt.ylabel('Estimated Pi')
+plt.xlabel('Attempts')
+plt.show()
+pi = (6 * circlePoints) / (circlePoints + outsidePoints)
+print('Estimated value of π =', pi)
