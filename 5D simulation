@@ -16,10 +16,10 @@ for i in range(runs):
         circlePoints += 1
     else:
         outsidePoints += 1
-    pi.append((60 * circlePoints) / (circlePoints + outsidePoints)**0.5)
+    pi.append(((60 * circlePoints) / (circlePoints + outsidePoints))**0.5)
 plt.plot(pi)
 plt.ylabel('Estimated Pi')
 plt.xlabel('Attempts')
 plt.show()
-pi = (60 * circlePoints) / (circlePoints + outsidePoints)**0.5
+pi = ((60 * circlePoints) / (circlePoints + outsidePoints))**0.5
 print('Estimated value of π =', pi)
